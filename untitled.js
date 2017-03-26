@@ -2,18 +2,15 @@ var s;
 var scl = 20;
 
 var food;
-
-
-var myElement;
-var hammertime = new Hammer(myElement);
-hammertime.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
-hammertime.on('swipe', function(ev) {
-	console.log(ev);
-});
+var mc;
 
 
 function setup() {
-  createCanvas(600, 600);
+	var myCan = createCanvas(windowWidth, windowHeight);
+  mc = new Hammer(myCan.elt);
+	mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+	setupDoubleTap();
+
   s = new Snake();
   frameRate(10);
   pickLocation();
@@ -117,4 +114,19 @@ function Snake() {
     rect(this.x, this.y, scl, scl);
 
   }
+}
+
+function setupDoubleTap() {
+  mc.on("swipeleft", function(e){
+		s.dir(-1, 0);
+  });
+	mc.on("swiperight", function(e){
+		s.dir(1, 0);
+  });
+	mc.on("swipeup", function(e){
+		s.dir(0, -1);
+  });
+	mc.on("swipedown", function(e){
+		s.dir(0, 1);
+  });
 }

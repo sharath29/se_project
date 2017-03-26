@@ -1,0 +1,35 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript" src="hammer.js"></script>
+<script>
+    var myElement = document.getElementById('myElement');
+
+    // create a simple instance
+    // by default, it only adds horizontal recognizers
+    var mc = new Hammer(myElement);
+
+    // listen to events...
+    mc.on("panleft panright tap press", function(ev) {
+        myElement.textContent = ev.type + " gesture detected.";
+    });
+</script>
+
+
+<style type="text/css">
+#myElement {
+    background: black;
+    height: 300px;
+    text-align: center;
+    font: 30px/300px Helvetica, Arial, sans-serif;
+}
+</style>
+
+
+</head>
+<body>
+
+
+    <div id="myElement"></div>
+
+</body>
+</html>
